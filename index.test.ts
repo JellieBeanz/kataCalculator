@@ -57,21 +57,59 @@ describe("Allow the add method to handle any amounts of numbers", () => {
   });
 });
 
-describe("Allow the add method to allow new line as seporator ", () => {
-    test("given 1\n2,3 calling add returns 6", ()=> {
-        const calculator = new Calculator();
-        const input = "1\n2,3";
-    
-        const result = calculator.add(input);
-    
-        expect(result).toBe(6);
-    } )
-    test("given 1,\n2 calling add will return invlid input", ()=> {
-        const calculator = new Calculator();
-        const input = "1,\n2";
-    
-        const result = calculator.add(input);
-    
-        expect(result).toBe("invalid input");
-    } )
-})
+describe("Allow the add method to allow new line as separator ", () => {
+  test("given 1\n2,3 calling add returns 6", () => {
+    const calculator = new Calculator();
+    const input = "1\n2,3";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe(6);
+  });
+  test("given 1,\n2 calling add will return invalid input", () => {
+    const calculator = new Calculator();
+    const input = "1,\n2";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe("invalid input");
+  });
+});
+
+describe("allow custom delimiters", () => {
+  test("Given //;\n1;2\n3 to return 6", () => {
+    const calculator = new Calculator();
+    const input = "//;\n1;2\n3";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe(6);
+  });
+
+  test("Given //$\n1$2\n3 to return 6", () => {
+    const calculator = new Calculator();
+    const input = "//$\n1$2\n3";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe(6);
+  });
+
+  test("Given //$\n1$2\n3,6 to return 12", () => {
+    const calculator = new Calculator();
+    const input = "//$\n1$2\n3,6";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe(12);
+  });
+
+  test("Given //$$\n1$$2\n3,6 to return 12", () => {
+    const calculator = new Calculator();
+    const input = "//$$\n1$$2\n3,6";
+
+    const result = calculator.add(input);
+
+    expect(result).toBe(12);
+  });
+});
