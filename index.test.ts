@@ -56,3 +56,22 @@ describe("Allow the add method to handle any amounts of numbers", () => {
     expect(result).toBe(10);
   });
 });
+
+describe("Allow the add method to allow new line as seporator ", () => {
+    test("given 1\n2,3 calling add returns 6", ()=> {
+        const calculator = new Calculator();
+        const input = "1\n2,3";
+    
+        const result = calculator.add(input);
+    
+        expect(result).toBe(6);
+    } )
+    test("given 1,\n2 calling add will return invlid input", ()=> {
+        const calculator = new Calculator();
+        const input = "1,\n2";
+    
+        const result = calculator.add(input);
+    
+        expect(result).toBe("invalid input");
+    } )
+})
